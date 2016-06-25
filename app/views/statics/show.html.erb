@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Home:</strong>
+  <%= @static.home %>
+</p>
+
+<p>
+  <strong>Faq:</strong>
+  <%= @static.faq %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @static.contact %>
+</p>
+
+<%= link_to 'Edit', edit_static_path(@static) %> |
+<%= link_to 'Back', statics_path %>
