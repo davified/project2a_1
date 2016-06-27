@@ -30,11 +30,12 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user # jeremiah's line. added to define current_user
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to user_posts, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: user_posts }
+        format.html { redirect_to [current_user, @post], notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: [current_user, @post] } #syntax changed based on jeremiah's explanation of how to direct to nested routes
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -61,7 +62,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to user_posts_path, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -78,14 +79,14 @@ class PostsController < ApplicationController
     end
 
     def edit_post
-      if @post.email != current_user.email
+      if @post.user != current_user
         flash[:error] = "You're not allowed to edit other users' posts"
         redirect_to posts_url
       end
     end
 
     def del_post
-      if @post.email != current_user.email
+      if @post.user != current_user.email
         flash[:error] = "You're not allowed to delete other users' posts"
         redirect_to posts_url
       end
