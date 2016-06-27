@@ -12,9 +12,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="posts">
     <% @posts.each do |post| %>
-      <tr>
+      <tr class="post">
         <td><%= post.title %></td>
         <td><%= post.body %></td>
         <td><%= post.user %></td>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_user_post_path(current_user) %>

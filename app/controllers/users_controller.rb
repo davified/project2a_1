@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  before_action :edit_user, only: [:edit, :update]
+  before_action :del_user, only: [:destroy]
+
   # GET /users
   # GET /users.json
   def index
@@ -67,6 +70,20 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def edit_user
+      if @user.email != current_user.email
+        flash[:error] = "You're not allowed to edit other users' account"
+        redirect_to users_url
+      end
+    end
+
+    def del_user
+      if @user.email != current_user.email
+        flash[:error] = "You're not allowed to delete other users' account"
+        redirect_to users_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

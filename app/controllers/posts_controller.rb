@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+  before_action :authenticate_user
+  before_action :edit
+
   # GET /posts
   # GET /posts.json
   def index
@@ -10,6 +13,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    # user = User.find(params[:user_id])
+    # post = user.post.find(params[:id])
   end
 
   # GET /posts/new
@@ -28,8 +33,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        format.html { redirect_to user_posts, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: user_posts }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -70,5 +75,19 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :body, :user_id)
+    end
+
+    def edit_post
+      if @post.email != current_user.email
+        flash[:error] = "You're not allowed to edit other users' posts"
+        redirect_to posts_url
+      end
+    end
+
+    def del_post
+      if @post.email != current_user.email
+        flash[:error] = "You're not allowed to delete other users' posts"
+        redirect_to posts_url
+      end
     end
 end

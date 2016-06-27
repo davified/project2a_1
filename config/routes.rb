@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'users#new'
 
-  get 'login', to: 'sessions#new'
+  get 'posts', to: 'posts#index'
+  get 'posts/new', to: 'posts#new', as: 'new_post'
+
   resources :sessions, only: [:create]
+  get 'users/new', as: 'home'
+  get 'login', to: 'sessions#new', as: 'sign_in'
   delete 'logout', to: 'sessions#destroy'
 
   # resources :statics

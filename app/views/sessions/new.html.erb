@@ -1,2 +1,22 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Login</h1>
+
+<!-- #the form tag will generate the form out
+# willl the form object we need to manually specific it out
+form tag does not nest it as compared to from_for (which know its taking in a user object) -->
+<%= form_tag sessions_path do %>
+
+<div class = "field">
+  <%= label_tag :email %>
+  <%= text_field_tag :email %>
+</div>
+
+<div class = "field">
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+</div>
+
+<div class = "actions">
+  <%= submit_tag "Sign In" %>
+</div>
+<%end %>
+<!-- if you want use  a search tag and etc, will a form tag  -->

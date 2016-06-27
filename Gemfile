@@ -61,4 +61,4 @@ gem 'rails-erd'
 
 gem 'bootstrap-will_paginate', '~>0.0.10'
 
-gem 'rails_12factor'
+# gem 'rails_12factor'

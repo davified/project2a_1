@@ -24,10 +24,20 @@
       </div>
     </header>
     <div class="container">
+      <% if user_logged_in?%>
+        <h3> Hello, <%= current_user.email %> </h3>
+        <%= link_to "Signed Out", logout_path, method: :delete %>
+      <% else %>
+        <%= link_to "Login", sign_in_path %>
+      <% end %>
+
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
       <%= yield %>
     </div>
+
+
+
   </body>
 </html>
