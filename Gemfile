@@ -58,3 +58,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails-erd'
+
+gem 'bootstrap-will_paginate', '~>0.0.10'
+
+gem 'rails_12factor'
