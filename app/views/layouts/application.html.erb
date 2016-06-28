@@ -18,7 +18,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   '#' %></li>
             <li><%= link_to "Help",   '#' %></li>
-            <li><%= link_to "Log in", '#' %></li>
+            <li><%= link_to "Sign In", sign_in_path %></li>
           </ul>
         </nav>
       </div>
@@ -26,9 +26,11 @@
     <div class="container">
       <% if user_logged_in?%>
         <h3> Hello, <%= current_user.email %> </h3>
-        <%= link_to "Signed Out", sign_out_path, method: :delete %>
+        <%= link_to "Sign Out", sign_out_path, method: :delete %>
+        <%= link_to 'New Post', new_user_post_path(current_user) %>
       <% else %>
-        <%= link_to "Login", sign_in_path %>
+        <%= link_to "Sign Up", new_user_path %>
+        <%= link_to "Sign in", sign_in_path %>
       <% end %>
 
       <% flash.each do |message_type, message| %>

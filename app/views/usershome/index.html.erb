@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
+<h1>Everyone's Posts</h1>
 
 <table>
   <thead>
@@ -17,13 +17,11 @@
       <tr class="post">
         <td><%= post.title %></td>
         <td><%= post.body %></td>
-        <td><%= post.user.email %></td>
-        <td><%= link_to 'Show', user_post_path(post.user, post) %></td>
-        <td><%= link_to 'Edit', edit_user_post_path(post.user, post) %></td>
-        <td><%= link_to 'Destroy', user_post_path(post.user, post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= post.user %></td>
+        <td><%= link_to 'Show', user_posts_path(current_user) %></td>
+        <td><%= link_to 'Edit', edit_user_post_path(current_user, post) %></td>
+        <td><%= link_to 'Destroy', user_post_path(current_user, post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>

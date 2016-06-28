@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  before_action :edit_user, only: [:edit, :update]
-  before_action :del_user, only: [:destroy]
+  # before_action :edit_user, only: [:edit, :update]
+  # before_action :del_user, only: [:destroy]
 
   # GET /users
   # GET /users.json
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -32,11 +32,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:success] = "Welcome!"  # add #{@user.name} later to personalise welcome message
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        # flash[:success] = "Welcome!"  # add #{@user.name} later to personalise welcome message
+        format.html { redirect_to home_path, notice: 'Welcome' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'Email is invalid' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

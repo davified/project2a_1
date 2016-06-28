@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless user_logged_in?
-      flash[:error] = "you must login first"
+      flash[:error] = "You must log in to access this page."
       redirect_to home_path
     end
   end

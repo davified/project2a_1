@@ -1,3 +1,8 @@
+<% if @user.errors.any? %>
+<% else %>
+<h1> Welcome </h1>
+<% end %>
+
 <%= render 'form', user: @user %>
 
 <%= link_to 'Back', users_path %>
