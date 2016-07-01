@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'posts#index', as: :home
 
-  get 'sign_up', to: 'users#new', as: :sign_up
+  get 'sign_up', to: 'users#new'
   # get '', to: 'posts#index', as: 'home'
 
   get 'posts', to: 'posts#index'
@@ -20,23 +20,5 @@ Rails.application.routes.draw do
   resources :users do
    resources :posts
   end
-
-#   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-# end
-
-
-# get 'sign_up', to: 'users#new' as: :sign_up
-  #
-  # get 'sign_up', to: 'users#new', as: :sign_up
-  #
-  # resources :users, only: [:new, :create] do
-  #   resources :posts
-  # end
-  #
-  # get 'sessions/new', as: :sign_in
-  # post 'sessions/create', as: :create_session
-
-  #
-  # get '/', to: 'posts#index', as: :home
 
 end
